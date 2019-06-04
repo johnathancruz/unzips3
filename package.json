@@ -1,5 +1,5 @@
 {
-  "name": "unzips3",
+  "name": "@predict/unzips3",
   "version": "1.0.0",
   "description": "Unzip uploaded file on S3 in target bucket to expose in CloudFront",
   "main": "lib/index.js",
@@ -19,7 +19,14 @@
     "type": "git",
     "url": "git+https://github.com/johnathancruz/unzips3.git"
   },
-  "keywords": ["unzip", "s3", "bucket", "aws"],
+  "keywords": [
+    "unzip",
+    "s3",
+    "bucket",
+    "aws",
+    "lambda",
+    "typescript"
+  ],
   "author": "Jonata Cruz",
   "license": "ISC",
   "bugs": {
@@ -27,7 +34,10 @@
   },
   "homepage": "https://github.com/johnathancruz/unzips3#readme",
   "devDependencies": {
+    "@types/aws-lambda": "^8.10.26",
     "@types/jest": "^24.0.13",
+    "aws-lambda": "^0.1.2",
+    "aws-sdk-mock": "^4.4.0",
     "jest": "^24.8.0",
     "prettier": "^1.17.1",
     "ts-jest": "^24.0.2",
@@ -37,5 +47,8 @@
   },
   "files": [
     "lib/**/*"
-  ]
+  ],
+  "dependencies": {
+    "s3-unzip-plus": "^0.1.8"
+  }
 }
