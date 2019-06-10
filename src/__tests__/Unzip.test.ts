@@ -1,45 +1,48 @@
+import { S3Event, S3EventRecord } from 'aws-lambda';
 
-import * as AWSMock from 'aws-sdk-mock';
-import * as AWS from 'aws-sdk';
-import { Unzip } from '../index';
-import { Context } from 'aws-lambda';
-
-describe('Upload zip file', () => {
-  beforeAll(() => {
-    AWSMock.mock('S3', 'S3PutEvent', (method, _, callback) => {
-      callback(null, {
-        data: 'https://example.com'
-      });
-    });
-  });
-
-  afterAll(() => {
-    AWSMock.restore('S3');
-  });
-
-  test('Unzip S3', () => {
-    const event = eventStub;
-    const context: Context = new Context;
-
-    const result = Unzip(event, context, callback);
-  });
-});
-
-test('Unzip S3', () => {
-  expect(Unzip({
-    "event":{
-      "Records": [
-        {
-          "s3": {
-            "bucket": {
-              "name": "test-bucket-in-s3"
-            },
-            "object": {
-              "key": "Companies.zip"
+const s3EventRecord: S3EventRecord = {
+    awsRegion: '',
+    eventName: '',
+    eventSource: '',
+    eventTime: '',
+    eventVersion: '',
+    requestParameters: {
+        sourceIPAddress: ''
+    },
+    responseElements: {
+        'x-amz-id-2': '',
+        'x-amz-request-id': ''
+    },
+    s3: {
+        bucket: {
+            arn: '',
+            name: '',
+            ownerIdentity: {
+                principalId: ''
             }
-          }
-        }
-      ]
+        },
+        configurationId: '',
+        object: {
+            eTag: '',
+            key: '',
+            sequencer: '',
+            size: 0,
+            versionId: ''
+        },
+        s3SchemaVersion: ''
+    },
+    userIdentity: {
+        principalId: ''
     }
-  }, null, null)).toBe({});
+};
+
+const records: S3EventRecord[] = [s3EventRecord];
+
+const s3Event: S3Event = {
+    Records: records
+}
+
+describe('Unzip S3 Test', () => {
+    test('Create IFileToUnzip', () => {
+    });
 });

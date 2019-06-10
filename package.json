@@ -1,14 +1,14 @@
 {
   "name": "@predict/unzips3",
   "version": "1.0.0",
-  "description": "Unzip uploaded file on S3 in target bucket to expose in CloudFront",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "description": "Unzip uploaded file on S3 in target bucket to expose in Web by CloudFront with HTTPS certificate.",
+  "main": "src/index.ts",
   "scripts": {
-    "test": "jest --config jestconfig.json",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
+    "test": "jest --config jestconfig.json",
+    "publish": "gulp clean && npm run build && gulp minify && gulp install && gulp zip && gulp upload && gulp lambda",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
@@ -24,8 +24,7 @@
     "s3",
     "bucket",
     "aws",
-    "lambda",
-    "typescript"
+    "lambda"
   ],
   "author": "Jonata Cruz",
   "license": "ISC",
@@ -33,22 +32,24 @@
     "url": "https://github.com/johnathancruz/unzips3/issues"
   },
   "homepage": "https://github.com/johnathancruz/unzips3#readme",
+  "dependencies": {
+    "s3-unzip-plus": "^0.1.8"
+  },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.26",
+    "@types/aws-lambda": "^8.10.27",
     "@types/jest": "^24.0.13",
-    "aws-lambda": "^0.1.2",
-    "aws-sdk-mock": "^4.4.0",
+    "@types/node": "^12.0.7",
+    "aws-s3": "^2.0.5",
+    "del": "^4.1.1",
+    "gulp": "^4.0.2",
+    "gulp-babel-minify": "^0.5.0",
+    "gulp-install": "^1.1.0",
+    "gulp-zip": "^5.0.0",
     "jest": "^24.8.0",
-    "prettier": "^1.17.1",
+    "prettier": "^1.18.2",
     "ts-jest": "^24.0.2",
     "tslint": "^5.17.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.5.1"
-  },
-  "files": [
-    "lib/**/*"
-  ],
-  "dependencies": {
-    "s3-unzip-plus": "^0.1.8"
   }
 }
