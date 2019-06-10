@@ -1,6 +1,6 @@
 {
   "name": "@predict/unzips3",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Unzip uploaded file on S3 in target bucket to expose in Web by CloudFront with HTTPS certificate.",
   "main": "src/index.ts",
   "scripts": {
