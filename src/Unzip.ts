@@ -13,14 +13,14 @@ interface IFileToUnzip {
 function getFileToUnzip(s3Event: S3Event): IFileToUnzip {
   const bucketName = s3Event.Records[0].s3.bucket.name;
   const zipedFile = s3Event.Records[0].s3.object.key;
-  const targetBucket = zipedFile.split('/')[0];
+  const targetBucketName = zipedFile.split('/')[0];
   const targetKeyName = zipedFile.split('/')[1].split('.')[0];
 
   const file: IFileToUnzip = {
     bucket: bucketName,
     deleteOnSuccess: false,
     file: zipedFile,
-    targetBucket: targetBucket + '/' + targetKeyName,
+    targetBucket: targetBucketName,
     targetKey: targetKeyName,
     verbose: false,
   };
